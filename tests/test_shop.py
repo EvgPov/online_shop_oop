@@ -1,11 +1,16 @@
+import sys
+import os
 import pytest
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.classes import (
-    Product, Customer, Cart, Order, Shop,
-    DigitalProduct, DiscountedProduct,
-    CreditCardProcessor, PayPalProcessor
-)
 
+
+# from src.classes import (
+#     Product, Customer, Cart, Order, Shop,
+#     DigitalProduct, DiscountedProduct,
+#     CreditCardProcessor, PayPalProcessor
+# )
+from src import Product, Customer, Cart, Order, Shop, DigitalProduct, DiscountedProduct, CreditCardProcessor, PayPalProcessor
 
 # ---------------------------
 # Фикстуры для тестов

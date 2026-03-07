@@ -1,6 +1,44 @@
 [project]
 name = "online-shop-oop"
 version = "0.1.0"
-description = "Add your description here"
+description = "An online shop OOP implementation for learning"
 requires-python = ">=3.9"
+authors = [
+    {name = "Povaliaeva Evg.", email = "pev-eletsl@eyamdex.ru"},
+]
 dependencies = []
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",  # Показать краткий отчет по всем тестам
+    "--strict-markers",  # Строгая проверка маркеров
+    "--strict-config",   # Строгая проверка конфига
+    "--showlocals",      # Показывать локальные переменные в ошибках
+    "--tb=short",        # более краткие traceback
+]
+# Папки, в которых pytest будет искать тесты
+testpaths = [
+    "tests",
+]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.0",
+    "pytest-cov>=4.0.0",  # опционально, для отчетов о покрытии
+]
