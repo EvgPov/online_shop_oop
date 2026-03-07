@@ -1,10 +1,9 @@
-from product import Product
-from product import DigitalProduct
-from cart import Cart
-from customer import Customer
-from order import Order
-from  PaymentProcessor import payment_processor
-
+from .product import Product
+from .product import DigitalProduct
+from .cart import Cart
+from .customer import Customer
+from .order import Order
+from .payment_processor import PaymentProcessor
 
 class Shop:
     def __init__(self):
@@ -35,7 +34,7 @@ class Shop:
     # уменьшение количества товаров на складе
     #  очищение корзины
     # добавление заказа в список
-    def create_order(self, customer: Customer) -> Order:
+    def create_order(self, customer: Customer, payment_processor: PaymentProcessor | None = None) -> Order:
         cart = self.get_cart(customer)
         if not cart.items:
             raise ValueError('Корзина пуста')
@@ -49,7 +48,7 @@ class Shop:
                     raise  ValueError(f"Товар {product.name} закончился")
                 # уменьшение количества товаров на складе
                 product.quantity -= quantity
-        order_id = f"ORDER-{self.next_order_id}"
+        order_id = f"ORDER-{ self._next_order_id }"
         self._next_order_id += 1
         # создание заказа из корзины покупателя
         order = Order(order_id, customer, cart.items, total)
@@ -61,7 +60,7 @@ class Shop:
                 order.update_status("оплачен")
 
         # очищение корзины
-        cart.clear()
+        cart.clear_cart()
         return order
 
     # поиск товаров по части названия

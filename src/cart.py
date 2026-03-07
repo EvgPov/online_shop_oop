@@ -1,5 +1,5 @@
-from customer import Customer
-from product import Product
+from .customer import Customer
+from .product import Product
 
 class Cart:
     def __init__(self, customer: Customer):

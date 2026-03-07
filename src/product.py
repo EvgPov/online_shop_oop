@@ -32,6 +32,7 @@ class Product:
 
     def is_available(self, needed_quantity: int) -> bool:
         return self._quantity >= needed_quantity
+
 # DigitalProduct
 class DigitalProduct(Product):
     def __init__(self, name: str, price: float, product_id: str,
@@ -53,12 +54,13 @@ class DigitalProduct(Product):
         if needed_quantity is None:
             return True
         return self.quantity >= needed_quantity
+
 # DiscountedProduct
 class DiscountedProduct(Product):
     def __init__(self, name: str, price: float,
                  quantity: int, product_id: str,
                  discount_percent: float = 0.0):
-        super().__init__(name, price,  quantity, product_id)
+        super().__init__(name, price, quantity, product_id)
         self.discount_percent = discount_percent
 
     @property
