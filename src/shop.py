@@ -23,6 +23,7 @@ class Shop:
     def register_customer(self, customer: Customer ):
         if customer.customer_id in self.customers:
             raise ValueError(f"Клиент с ID  { customer.customer_id } уже зарегистрирован")
+        self.customers[customer.customer_id] = customer
 
     # корзина покупателя
     def get_cart(self, customer: Customer):
@@ -40,23 +41,28 @@ class Shop:
             raise ValueError('Корзина пуста')
 
         total = cart.get_total_price(self.products)
-
-        for product_id, quantity in cart.items.items():
-            product = self.products.get(product_id)
-            if product and not isinstance(product, DigitalProduct):
+        # Проверка наличия товаров
+        items_for_order = {}
+        for product, quantity in cart.items.items():
+            items_for_order[product.product_id] = quantity
+            if not isinstance(product, DigitalProduct):
                 if product.quantity < quantity:
-                    raise  ValueError(f"Товар {product.name} закончился")
-                # уменьшение количества товаров на складе
+                    raise ValueError(
+                         f"Недостаточно товара '{product.name}' на складе "
+                        f"(в наличии {product.quantity}, запрошено {quantity})"
+                    )
                 product.quantity -= quantity
+
         order_id = f"ORDER-{ self._next_order_id }"
         self._next_order_id += 1
+
         # создание заказа из корзины покупателя
-        order = Order(order_id, customer, cart.items, total)
+        order = Order(order_id, customer,items_for_order, total)
         # добавление заказа в список
         self.orders.append(order)
 
         if payment_processor:
-            if payment_processor.process(order, total):
+            if payment_processor.process_payment(order, total):
                 order.update_status("оплачен")
 
         # очищение корзины

@@ -23,6 +23,7 @@ class Cart:
             if product.product_id == product_id:
                 self.items.pop(product)
                 return
+        raise ValueError(f"Товар с ID {product_id} нет в корзине")
 
     # изменение количество товара в корзине
     def update_quantity(self, product_id: str, new_quantity: int)-> int:
@@ -47,7 +48,7 @@ class Cart:
             if current_product:
                 total_price += current_product.price * quantity
             else:
-                total_price += product.price * quantity
+                raise ValueError(f"Товар '{product.name}' (ID: {product.product_id}) не найден в каталоге магазина")
         return total_price
 
     # очищение корзины
@@ -59,12 +60,14 @@ class Cart:
         if not self.items:
             return f"Корзина {self.customer.name} пуста"
 
-        lines = [f"Корзина {self.customer.name}:", ""]
+        lines = [f"Корзина покупателя {self.customer.name}:\n", ""]
         total_quantity = sum(self.items.values())
 
         for product, quantity in sorted(self.items.items(), key=lambda item: item[0].name):
-            lines.append(f"  {product.product_id} × {quantity} шт. ({product.name})")
-        lines.append("")
-        lines.append(f"Всего позиций: {len(self.items)}  Всего товаров: {total_quantity:>4}")
-        return "\n".join(lines)
+            # lines.append(f"  {product.product_id} × {quantity} шт. ({product.name})")
+            lines.append(f"  {product.name}: {quantity} шт.")
+        # lines.append("")
+        # lines.append(f"Всего позиций: {len(self.items)}  Всего товаров: {total_quantity:>4}")
+        # return "\n".join(lines)
+        return "".join(lines)
 

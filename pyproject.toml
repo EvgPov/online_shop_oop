@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "online-shop-oop"
 version = "0.1.0"
@@ -10,7 +14,9 @@ dependencies = []
 
 [tool.pytest.ini_options]
 minversion = "7.0"
+pythonpath = ["."]
 addopts = [
+    "--import-mode=importlib",  # Режим импорта
     "-ra",  # Показать краткий отчет по всем тестам
     "--strict-markers",  # Строгая проверка маркеров
     "--strict-config",   # Строгая проверка конфига
@@ -18,9 +24,7 @@ addopts = [
     "--tb=short",        # более краткие traceback
 ]
 # Папки, в которых pytest будет искать тесты
-testpaths = [
-    "tests",
-]
+testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
@@ -42,3 +46,7 @@ dev = [
     "pytest>=9.0.0",
     "pytest-cov>=4.0.0",  # опционально, для отчетов о покрытии
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
