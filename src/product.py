@@ -41,9 +41,9 @@ class Product:
 
 # DigitalProduct
 class DigitalProduct(Product):
-    def __init__(self, __name: str, __price: float, __quantity: int, product_id: str,
+    def __init__(self, __name: str, __price: float, __quantity:int, product_id: str,
                  file_size: float, download_link: str):
-        super().__init__(__name, __price,  1000, product_id)
+        super().__init__(__name, __price, __quantity, product_id)
         self.file_size = float(file_size)
         self.download_link = str(download_link).strip()
 

@@ -14,9 +14,9 @@ if __name__ == '__main__':
     shop.add_product(Product("Кроссовки", 24000.00, 15, "T002"))
     shop.add_product(Product("Куртка", 35000.00, 12, "T003"))
 
-    shop.add_product(DigitalProduct("Курс Python", 4900.00, "DIG001", 2.5, "http://..."))
-    shop.add_product(DigitalProduct("Курс JavaScript", 6900.00, "DIG002", 5.7, "http://..."))
-    shop.add_product(DigitalProduct("Курс React", 9900.00, "DIG003", 15.8, "http://..."))
+    shop.add_product(DigitalProduct("Курс Python", 4900.00, 1000, "DIG001", 2.5, "http://..."))
+    shop.add_product(DigitalProduct("Курс JavaScript", 6900.00, 1000, "DIG002", 5.7, "http://..."))
+    shop.add_product(DigitalProduct("Курс React", 9900.00, 1000, "DIG003", 15.8, "http://..."))
 
     shop.add_product(DiscountedProduct("Пуховик", 49000.00, 5, "S001", 30))
     shop.add_product(DiscountedProduct("Сапоги", 7900.00, 3, "S002", 50))
