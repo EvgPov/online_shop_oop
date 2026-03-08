@@ -108,14 +108,8 @@ if __name__ == '__main__':
 
     shop2 = Shop()
     #загрузка из файла
+    print()
     shop2.load_from_json(filename)
-
-    print("После загрузки:")
-    print(f"Товаров: {len(shop2.products)}")
-    print(f"Клиентов: {len(shop2.customers)}")
-    print(f"Заказов: {len(shop2.orders)}")
-    print(f"Корзин: {len(shop2.carts)}")
-
 
 
 

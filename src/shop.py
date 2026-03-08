@@ -1,5 +1,6 @@
 from .product import Product
 from .product import DigitalProduct
+from .product import DiscountedProduct
 from .cart import Cart
 from .customer import Customer
 from .order import Order
@@ -173,12 +174,13 @@ class Shop:
                 product = DigitalProduct(
                     name=product_data.get("name"),
                     price=product_data.get("price"),
+                    quantity=product_data.get("quantity"),
                     product_id=product_id,
                     file_size=product_data.get("file_size"),
                     download_link=product_data.get("download_link"),
                 )
             elif product_data.get("type") == "discounted":
-                product = DigitalProduct(
+                product = DiscountedProduct(
                     name=product_data.get("name"),
                     price=product_data.get("price"),
                     quantity=product_data.get("quantity"),
@@ -214,7 +216,8 @@ class Shop:
             for product_id, quantity in cart_data.get("items", {}).items():
                 product = self.products.get(product_id)
                 if product:
-                    cart.items[product] += quantity
+                    current_quantity = cart.items.get(product, 0)
+                    cart.items[product] = current_quantity + quantity
                 else:
                     print(f"Товар {product_id} не найден при восстановлении корзины {customer_id}")
             self.carts[customer_id] = cart
@@ -251,5 +254,19 @@ class Shop:
             except:
                 pass
         print(f"Данные успешно загружены из {filename}")
-        print(f"Товаров: {len(self.products)}, клиентов: {len(self.customers)}, "
-              f"заказов: {len(self.orders)}, корзин: {self.carts}")
+        print()
+        print(f"Товаров: {len(self.products)}")
+        for product in self.products.values():
+            print(product)
+        print()
+        print(f"Клиентов: {len(self.customers)}")
+        for customer in self.customers.values():
+            print(customer)
+        print()
+        print(f"Заказов: {len(self.orders)}")
+        for order in self.orders:
+            print(order)
+        print()
+        print(f"Корзин: {len(self.carts)}")
+        for cart in self.carts.values():
+            print(cart)
