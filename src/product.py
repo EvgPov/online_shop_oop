@@ -74,7 +74,7 @@ class DiscountedProduct(Product):
     def discount_percent(self, new_percent: float) -> None:
         if not (0 <= new_percent <= 100):
             raise ValueError("Скидка должна быть от 0 до 100")
-        self.__discount_percent = float(new_percent)
+        self.__discount_percent = float(max(0.0, min(100.0, new_percent)))
 
     @property
     def price(self) -> float:

@@ -1,0 +1,165 @@
+{
+    "products": {
+        "T001": {
+            "name": "Джинсы мужские",
+            "price": 15000.0,
+            "quantity": 7.0,
+            "product_id": "T001",
+            "type": "regular"
+        },
+        "T002": {
+            "name": "Кроссовки",
+            "price": 24000.0,
+            "quantity": 11.0,
+            "product_id": "T002",
+            "type": "regular"
+        },
+        "T003": {
+            "name": "Куртка",
+            "price": 35000.0,
+            "quantity": 10.0,
+            "product_id": "T003",
+            "type": "regular"
+        },
+        "DIG001": {
+            "name": "Курс Python",
+            "price": 4900.0,
+            "quantity": 1000,
+            "product_id": "DIG001",
+            "type": "digital",
+            "file_size": 2.5,
+            "download_link": "http://..."
+        },
+        "DIG002": {
+            "name": "Курс JavaScript",
+            "price": 6900.0,
+            "quantity": 1000,
+            "product_id": "DIG002",
+            "type": "digital",
+            "file_size": 5.7,
+            "download_link": "http://..."
+        },
+        "DIG003": {
+            "name": "Курс React",
+            "price": 9900.0,
+            "quantity": 1000,
+            "product_id": "DIG003",
+            "type": "digital",
+            "file_size": 15.8,
+            "download_link": "http://..."
+        },
+        "S001": {
+            "name": "Пуховик",
+            "price": 34300.0,
+            "quantity": 3.0,
+            "product_id": "S001",
+            "type": "regular"
+        },
+        "S002": {
+            "name": "Сапоги",
+            "price": 3950.0,
+            "quantity": 1.0,
+            "product_id": "S002",
+            "type": "regular"
+        },
+        "S003": {
+            "name": "Шапка",
+            "price": 7120.0,
+            "quantity": 0.0,
+            "product_id": "S003",
+            "type": "regular"
+        },
+        "S004": {
+            "name": "Джинсы женские",
+            "price": 7085.0,
+            "quantity": 10,
+            "product_id": "S004",
+            "type": "regular"
+        }
+    },
+    "customers": {
+        "C001": {
+            "name": "Thomas Edison",
+            "customer_id": "C001",
+            "email": "customer@example.ru"
+        },
+        "C002": {
+            "name": "John Lennon",
+            "customer_id": "C002",
+            "email": "john@example.ru"
+        },
+        "C003": {
+            "name": "Robert De Niro",
+            "customer_id": "C003",
+            "email": "robert@example.ru"
+        },
+        "C004": {
+            "name": "Morgan Freeman",
+            "customer_id": "C004",
+            "email": "morgant@example.ru"
+        }
+    },
+    "orders": [
+        {
+            "order_id": "ORDER-10001",
+            "customer_id": "C001",
+            "items": {
+                "T001": 1,
+                "T002": 1,
+                "DIG001": 1,
+                "S001": 1
+            },
+            "total_price": 78200.0,
+            "status": "оплачен"
+        },
+        {
+            "order_id": "ORDER-10002",
+            "customer_id": "C002",
+            "items": {
+                "T003": 1,
+                "DIG002": 1,
+                "DIG003": 1,
+                "S002": 2
+            },
+            "total_price": 59700.0,
+            "status": "оплачен"
+        },
+        {
+            "order_id": "ORDER-10003",
+            "customer_id": "C003",
+            "items": {
+                "T001": 2,
+                "T002": 3,
+                "T003": 1,
+                "DIG003": 1,
+                "S001": 1,
+                "S003": 1
+            },
+            "total_price": 188320.0,
+            "status": "оплачен"
+        }
+    ],
+    "carts": {
+        "C001": {
+            "customer_id": "C001",
+            "items": {}
+        },
+        "C002": {
+            "customer_id": "C002",
+            "items": {}
+        },
+        "C003": {
+            "customer_id": "C003",
+            "items": {}
+        },
+        "C004": {
+            "customer_id": "C004",
+            "items": {
+                "T003": 2,
+                "T001": 2,
+                "DIG001": 1,
+                "S001": 1
+            }
+        }
+    }
+}
